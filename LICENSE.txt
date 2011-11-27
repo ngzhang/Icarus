@@ -1,0 +1,67 @@
+Hardware Design Public License Version 0.04
+
+? Graham Seaman 2000 (graham@opencollector.org)
+Preamble
+
+[meta]This license contains three parts: the license proper; comments, explaining the intent of the license proper, and separated from it by [comment]...[/comment], and meta-comments, which will be removed from the license once it has been completed. Meta-comments are separated by [meta]...[/meta]. All comments are in italics. [/meta]
+[comment]This license is intended to achieve similar goals to those of the GPL (http://www.gnu.org/copyleft/gpl.html) in the context of hardware designs. It is not intended to achieve all the different goals those working on free hardware designs may have, some of which may require radically different licenses. However, it is intended to cover hardware designs of all types, including designs for PCBs, ICs, and Programmable Logic Devices. [/comment]
+
+[meta] Trying to keep it this general has made the current version sound horribly long-winded. It is more of an exercise in finding out what the problems are in developing this kind of license, and what the goals should be, than a practical license, since there is no organization behind it. [/meta]
+
+Any version of this license with version number greater than or equal to 1.0 may be copied and used verbatim. For versions before 1.0, the license may not be used; however, it may be copied, and meta-comments may be changed or added at will.
+
+[meta]This license is incomplete, and has never been looked at by a lawyer. Maybe one day there will be a final valid version 1.0. In the mean time, you're welcome to use any useful ideas in it (as I have also borrowed ideas), just not to use the whole thing under this name. The main sources of the ideas (and parts of the text) in the license are:
+
+Ian Carr de Avelon
+Reinoud Lambert
+And above all, the FSF
+[/meta]
+DEFINITIONS
+
+"Manufacturing files" include any files which can be used as direct input to a process the purpose of which is to permanently change the electrical or electronic properties of an object. This includes, but is not limited to, gerber or other files for PCB manufacture; mask works for IC manufacture.
+"Programming files" include any files which can be used as direct input to a process the purpose of which is to temporarily change the electrical or electronic properties of an object. This includes, but is not limited to, programmable logic device configuration data for FPGAs or PLDs; executable files for processors.
+The "hardware design" (or simply "the Design") is the set of files associated with this license by being placed in the same directory as the license, or subdirectories of the directory containing the license, including but not limited to manufacturing files and programming files. Where these files have a textual format, they should contain a reference to this license (or in the case of software or documentation any license recognised by the Free Software Foundation as compatible with licenses issued by the Free Software Foundation).
+[meta]This is the key to the whole license; it avoids the almost impossible to task of finding a completely general definition of a hardware design. Note that the legality of covering binary files with a copyright license is not settled, but that this has become current practice (eg. Xilinx uses this for FPGA bitstreams)[/meta]
+A "readable" file must be in a format which can be read by software available to the general public, whether free or for a fee, with the exception that it must not be encrypted, obfuscated, or have its readability in any way artifically obstructed.
+"Hardware Design Public License" (abbreviated to "HDPL") refers to this or later versions of this license.
+Terms And Conditions
+
+The HDPL covers all files included in the hardware design, except the license itself. You may not impose any further restrictions on use or distribution of the hardware design than those contained in the HDPL.
+You may copy and distribute verbatim copies of the hardware design in any medium. You may charge a fee for the physical act of transferring a copy via a non-networked medium (such as a CDROM), and you may offer warranty protection, instructional support, or other services in exchange for a fee. You may not charge a fee for the sole purpose of providing access to the hardware design via a network. 
+[comment]"Verbatim" implies the inclusion of ALL files making up the hardware design, including the license file itself.[/comment]
+You may freely modify this hardware design (with the exception of the HDPL file itself), thus forming a work based on the hardware design, and copy and distribute such modifications under the terms of section 2 above, provided that you also meet all these conditions:
+You must cause the modified files to carry prominent notices stating that you changed the files and the date of any change.
+You must in no way alter any copyright or mask work right symbols and information contained in the design
+You must cause any work that you distribute or publish, that in whole or in part contains or is derived from the hardware design or any part thereof, to be licensed as a whole at no charge to all third parties under the terms of this license
+You must ensure that all files in the modified design are readable in the sense defined above. 
+[comment]Clause 3.3 implies that you may not include in your modification any work covered by patent or other rights which would invalidate this license[/comment] 
+[meta]Clause 3.4 is not in the spirit of the gpl. It would be desirable, but not practical to insist that only free software formats can be used. As it is, this clause leaves it open to a company to use a proprietary and secret format only usable by in-house software, and then to offer that software for sale at a ridiculous price, in order to satisfy the letter of this clause. This clause may change in future versions.[/meta]
+The requirements of section 3 apply to the modified work as a whole. If identifiable sections of that work are not derived from the hardware design, and can reasonably be considered independent and separate works in themselves, then this license, and its terms, do not apply to those sections when you distribute them as separate works. But when you distribute the same sections as part of a whole which is a work based on this hardware design, the distribution of the whole must be on the terms of this license, whose permissions for other licensees extend to the entire whole, and thus to each and every part regardless of who wrote it. 
+[comment]For example, say the design is a System-On-Chip computer. A person who adds a UART to this system may distribute the UART design separately under a different license. But if that person wishes to distribute the SOC computer design with the inclusion of the UART, the UART design must fall under the original license[/comment]
+You may copy and distribute the manufacturing and programming files contained within the hardware design (or a work based on it, under sections 3,4) separately from the remainder of the hardware design, provided that you also do one of the following:
+Accompany them with a prominently displayed URL for a network site available to the general public for a period of at least 3 years and with no access restrictions from which the complete hardware design (or the work based on it, as appropriate) may be downloaded in readable form.
+Accompany them with the information you received as to the offer to distribute the corresponding complete hardware design (this alternative is allowed only if you received the manufacturing and programming files with such an offer, and have not subsequently modified these files).
+[comment]This section has 4 principal purposes:
+
+To apply similar conditions to those of the gpl to any software included in the hardware design
+To apply similar conditions to those of the gpl to any programming information such as fpga bitstreams included in the design
+To prevent users under section 6 from taking the design and modifying it by adding secret interfaces so that the manufactured design becomes effectively unusable.
+To enforce the availability of documentation for any manufactured version of the design, via the following clause.
+[/comment]
+You may use manufacturing files contained in the hardware design for the purpose for which they were intended as defined above (definition 1).
+For the purposes of this license, such use is to be considered as a form of distribution of the manufacturing files, and hence falls under section 5, with the same requirements.
+[meta]The remainder of this license is copied almost word for word from the GPL. It is likely that extra clauses will have to be added to deal with potential patent violations and lack of implied warranty[/meta]
+
+You may not copy, modify, sublicense, or distribute the Design except as expressly provided under this License. Any attempt otherwise to copy, modify, sublicense or distribute the Design is void, and will automatically terminate your rights under this License. However, parties who have received copies, or rights, from you under this License will not have their licenses terminated so long as such parties remain in full compliance.
+You are not required to accept this License, since you have not signed it. However, nothing else grants you permission to modify or distribute the design or its derivative works. These actions are prohibited by law if you do not accept this License. Therefore, by modifying or distributing the hardware design (or any work based on the Design), you indicate your acceptance of this License to do so, and all its terms and conditions for copying, distributing or modifying the design or works based on it.
+Each time you redistribute the Design (or any work based on the Design), the recipient automatically receives a license from the original licensor to copy, distribute or modify the Design subject to these terms and conditions. You may not impose any further restrictions on the recipients' exercise of the rights granted herein. You are not responsible for enforcing compliance by third parties to this License.
+If, as a consequence of a court judgment or allegation of patent infringement or for any other reason (not limited to patent issues), conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot distribute so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not distribute the design at all. For example, if a patent license would not permit royalty-free redistribution of the design by all those who receive copies directly or indirectly through you, then the only way you could satisfy both it and this License would be to refrain entirely from distribution of the Design.
+If any portion of this section is held invalid or unenforceable under any particular circumstance, the balance of the section is intended to apply and the section as a whole is intended to apply in other circumstances.
+
+It is not the purpose of this section to induce you to infringe any patents or other property right claims or to contest validity of any such claims; this section has the sole purpose of protecting the integrity of the free hardware design distribution system, which is implemented by public license practices. Many people have made generous contributions to the growing range of hardware designs distributed through that system in reliance on consistent application of that system; it is up to the author/donor to decide if he or she is willing to distribute a design through any other system and a licensee cannot impose that choice.
+
+This section is intended to make thoroughly clear what is believed to be a consequence of the rest of this License.
+
+If the distribution and/or use of the Design is restricted in certain countries either by patents or by copyrighted interfaces, the original copyright holder who places the Design under this License may add an explicit geographical distribution limitation excluding those countries, so that distribution is permitted only in or among countries not thus excluded. In such case, this License incorporates the limitation as if written in the body of this License.
+Each version of the HDPL is given a distinguishing version number. If the Design specifies a version number of this License which applies to it and "any later version", you have the option of following the terms and conditions either of that version or of any later version.
+If you wish to incorporate parts of the Design into other free designs whose distribution conditions are different, you may write to the author to ask for permission.
