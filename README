@@ -1,1 +1,6 @@
 Icarus DUAL Spartan6 Development Platform is a FPGA evaluation board, which include 2 XILINX spartan6 FPGAs.
+
+
+folder "PCB" include PCB design project , using altium designer 10
+folder "FPGA_project" include FPGA design project, using xilinx ISE13.2
+folder "miner_software" include a TCL mining script.
