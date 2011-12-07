@@ -1,0 +1,5 @@
+ADD 2011/12/7
+
+1, complex design flow.
+2, miner code has bugs when FPGAs in chain number >2.
+3, sometimes, the state-machine in miner_ctrl module fail. and some variable change incorrect, example as nonce_to_num, id. Don't know why.
