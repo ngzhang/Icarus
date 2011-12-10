@@ -1,0 +1,8 @@
+ADD 2011/12/7
+
+1. Miner proformance low when network condition is bad. because if the 
+   data transmission to pool fail or cost more than 6 sec time, the 
+   fpga's WDT will restart the FPGA, and will cause the miner software
+   fail and restart.
+
+2. miner software don't support longpool, this cause a 1-2% speed lose.
