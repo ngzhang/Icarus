@@ -178,7 +178,7 @@ while {1} {
 	for {set i 0} {$i<$max_id} {incr i} {
 	    get_work $url $userpass
 	    feed_dog
-
+	    
 	}
 	set time_last_get_work [clock clicks -milliseconds]
 	puts -nonewline $serial $cmd_set_work;
@@ -200,7 +200,7 @@ while {1} {
 	set time_last_get_work [clock clicks -milliseconds]
     }
     get_miner_status
-
+    
     set work_num_hex [expr $golden_num + $to_num]
     if {$work_num_hex >0} {
 	puts -nonewline $serial $cmd_set_work;
@@ -218,7 +218,7 @@ while {1} {
 	push_work_to_fpga $newwork $next_id
 	incr next_id
 	if {$next_id == $max_id} {
-		set next_id 0
+	    set next_id 0
 	}
 	puts "";
 	submit_nonce $working_data($golden_id($i)) $golden_nonce($i) $working_midstate($golden_id($i))
@@ -245,8 +245,6 @@ while {1} {
 	    after $timeout
 	    eval exec "tclsh mine.tcl &"
 	    exit
-	    }
-
 	} else {
 	    set same_id 0
 	}
@@ -256,7 +254,7 @@ while {1} {
 	push_work_to_fpga $newwork $next_id
 	incr next_id
 	if {$next_id == $max_id} {
-		set next_id 0
+	    set next_id 0
 	}
 	puts "";
     }
