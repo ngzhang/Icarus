@@ -22,7 +22,8 @@ proc fpga_init {} {
     set parity "n" 
     set databits 8
     set stopbits 1
-    #set serial [open com3: r+]
+    # if you are using a Linux system use this line
+    # set serial [open /dev/ttyUSB0 r+]
     set serial [open \\\\.\\com$com_number r+]
     #2048 > 1       + 256   + 1          + 256*(1+4)
     #       to_num  + to_id + golden_num + 256*(golden_id+golden_nonce)
