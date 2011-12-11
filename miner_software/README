@@ -1,0 +1,9 @@
+HOW TO USE:
+
+1. install `tclsh8.5' 
+      sudo apt-get install tclsh8.5
+
+2. checkout: uart_comm.tcl line: 26
+
+3. start mining: ./miner.sh
+
