@@ -5,4 +5,9 @@ folder "PCB" include PCB design project , using altium designer 10
 folder "FPGA_project" include FPGA design project, using xilinx ISE13.2
 folder "miner_software" include a TCL mining script.
 
+If you want to join this project and make some changes, please e-mail me:
+ngzhang1983@msn.com
+
+Thank you!
+
 ngzhang
