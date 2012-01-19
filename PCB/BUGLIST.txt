@@ -1,4 +1,0 @@
-2011/12/7
-Notice:
-1, It's better to use the TPS54530's soft-start function.
-2, It's better to power the core first, and 2nd the IO power.

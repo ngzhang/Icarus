@@ -1,4 +1,0 @@
-this is a 380Mh/s ver, for test only.
-befor use, swith S2 = "00xx", S3 = "01xx". "1" means on.
-and MUST use with a new miner software.
-source will release soon.

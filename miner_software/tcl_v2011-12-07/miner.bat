@@ -1,3 +1,0 @@
-tclsh mine.tcl
-
-PAUSE

@@ -1,0 +1,49 @@
+# UCF for a Nexys2 500K board
+NET "osc_clk" LOC = "J1";
+
+# serial port receive & transmit
+NET "RxD" LOC = "D1";
+NET "TxD" LOC = "B1";
+
+# TTL level serial port: ja3 = rxd, ja2 = txd
+NET "extminer_txd<0>" LOC = "D22";
+NET "extminer_rxd<0>" LOC = "B22";
+
+# Button 0
+//NET "reset" LOC = "A4";
+
+NET "led[0]" LOC = "A18";
+NET "led[1]" LOC = "B18";
+NET "led[2]" LOC = "A17";
+NET "led[3]" LOC = "A16";
+
+NET "dip[0]" LOC = "A4";
+NET "dip[1]" LOC = "D6";
+NET "dip[2]" LOC = "C6";
+NET "dip[3]" LOC = "C8";
+
+
+
+#Created by Constraints Editor (xc6slx150-fgg484-3) - 2011/12/24
+#NET "osc_clk" TNM_NET = osc_clk;
+#TIMESPEC TS_osc_clk = PERIOD "osc_clk" 100 MHz HIGH 50%;
+
+NET "hash_clk" TNM_NET = hash_clk;
+NET "dv_clk" TNM_NET = dv_clk;
+TIMESPEC TS_dv_clk = PERIOD "dv_clk" 20 ns HIGH 50 %;
+TIMESPEC TS_hash_clk = PERIOD "hash_clk" 4.89 ns HIGH 50 %;
+
+
+
+NET "hash_clk" TNM_NET =  FFS "GRP_A";
+NET "dv_clk" TNM_NET =  FFS "GRP_B";
+
+
+TIMESPEC TS_Example1 = FROM "GRP_A" TO "GRP_B" TIG ;
+#
+TIMESPEC TS_Example2 = FROM "GRP_B" TO "GRP_A" TIG ;
+
+NET "dip[*]" TIG;
+NET "M/midstate_d1[*]" TIG;
+NET "M/data2_d1[*]" TIG;
+NET "M/got_ticket_d1" TIG;

@@ -1,0 +1,4 @@
+this script is from github:
+Open-Source-FPGA-Bitcoin-Miner / projects / Verilog_Xilinx_Port
+URL:
+https://github.com/teknohog/Open-Source-FPGA-Bitcoin-Miner/tree/9aad01a25cc735fb79dc0c20398ae31c42aaedeb/projects/Verilog_Xilinx_Port
