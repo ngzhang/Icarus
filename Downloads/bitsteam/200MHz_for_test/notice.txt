@@ -1,0 +1,2 @@
+200MHz test version bitsteam.not guarantee stable on all boards.
+use as own risk.if you find that error rate goes high, please reduce to the 190M V2 bitsteam.

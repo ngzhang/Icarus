@@ -1,7 +1,11 @@
-//notice: this is a modify miner version for Icarus. for the origin please check the github project below:
-//https://github.com/teknohog/Open-Source-FPGA-Bitcoin-Miner
+// Hub code for a cluster of miners using async links
 
-// modify by ngzhang. 2012/1/18
+// by teknohog
+
+// Xilinx DCM
+//`include "main_pll.v"
+//`include "main_pll_2x.v"
+
 
 //module fpgaminer_top (osc_clk, RxD, TxD, extminer_rxd, extminer_txd);
 module fpgaminer_top (osc_clk, RxD, TxD, led, extminer_rxd, extminer_txd, dip);
@@ -79,24 +83,39 @@ module fpgaminer_top (osc_clk, RxD, TxD, led, extminer_rxd, extminer_txd, dip);
    hub_core #(.SLAVES(SLAVES)) hc (.hash_clk(dv_clk), .new_nonces(new_nonces), .golden_nonce(golden_nonce), .serial_send(serial_send), .serial_busy(serial_busy), .slave_nonces(slave_nonces));
 
    // Common workdata input for local miners
-   wire [255:0] 	midstate;
-	wire [95:0] data2;
+   wire [255:0] 	midstate, data2;
 	wire start_mining;
    serial_receive serrx (.clk(dv_clk), .RxD(RxD), .midstate(midstate), .data2(data2), .reset(reset), .RxRDY(start_mining));
 
    // Local miners now directly connected
 	
 	wire got_ticket;
-	reg got_ticket_d1,got_ticket_d2,new_ticket;
+	reg new_ticket;
+	reg [3:0]ticket_CS = 4'b0001;
+	reg [3:0]ticket_NS;
 
 	sha256_top M (.clk(hash_clk), .rst(reset), .midstate(midstate), .data2(data2), .golden_nonce(slave_nonces[31:0]), .got_ticket(got_ticket), .miner_busy(miner_busy), .nonce_start(nonce_start), .start_mining(start_mining));
 
 
 always@ (posedge dv_clk)
 	begin
-	got_ticket_d1 <= got_ticket;
-	got_ticket_d2 <=got_ticket_d1;
-	new_ticket <= ((got_ticket_d1) && (!got_ticket_d2));
+		ticket_CS <= ticket_NS;
+	end
+
+always@ (*)
+	begin
+		case(ticket_CS)
+			4'b0001: if (got_ticket) ticket_NS = 4'b0010; else ticket_NS = ticket_CS;
+			4'b0010: ticket_NS = 4'b0100;
+			4'b0100: ticket_NS = 4'b1000;
+			4'b1000: if (!got_ticket) ticket_NS = 4'b0001; else ticket_NS = ticket_CS;
+			default: ticket_NS = 4'b0001;
+		endcase
+	end
+
+always@ (posedge dv_clk)
+	begin
+		new_ticket <= (ticket_CS == 4'b0100);
 	end
 
 assign new_nonces[0] = new_ticket;
@@ -120,12 +139,9 @@ assign new_nonces[0] = new_ticket;
    //assign led[0] = |golden_nonce;
    assign led[1] = ~RxD;
    assign led[2] = ~TxD;
-	assign led[3] = ~miner_busy;
+ 	assign led[3] = ~miner_busy;
+   // Light up only from locally found nonces, not ext_port results//
+  pwm_fade pf1 (.clk(dv_clk), .trigger(|new_nonces[LOCAL_MINERS-1:0]), .drive(led[0]));
 
-   // Light up only from locally found nonces, not ext_port results
-   pwm_fade pf1 (.clk(dv_clk), .trigger(|new_nonces[LOCAL_MINERS-1:0]), .drive(led[0]));
-//	pwm_fade  #(.FADE_BITS(23)) pf2(.clk(dv_clk), .trigger(~RxD), .drive(led[1]));
-//	pwm_fade #(.FADE_BITS(23)) pf3 (.clk(dv_clk), .trigger(~TxD), .drive(led[2]));
-   
 endmodule
 
