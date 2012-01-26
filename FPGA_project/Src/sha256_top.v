@@ -31,7 +31,7 @@ module sha256_top (
 	 start_mining
 );
 
-parameter NONCE_CT = 31'd255;
+parameter NONCE_CT = 31'd256;
 
 input           clk;
 input           rst;
@@ -55,7 +55,7 @@ reg     [30:0]  nonce;
 wire     start_mining;
 reg     [31:0]  golden_nonce;
 reg 	  [30:0]  golden_nonce_ct;
-reg             got_ticket, got_ticket_d1,got_ticket_d2;
+reg             got_ticket, got_ticket_d1,got_ticket_d2, got_ticket_d3 ;
 reg             work;
 reg             nonce_to = 1'b1;
 reg		[255:0]	midstate_d1;
@@ -65,6 +65,12 @@ reg		start_mining_d1;
 reg	[31:0]	hash2_head;
 reg    miner_busy;
 reg    reset_n1,reset_n2,reset_n3,reset_n4,reset_n5,reset_n6;
+
+
+//  BUFGCE clkout1_buf
+//   (.O   (clk_work),
+//    .CE  (work),
+//    .I   (clk));
 
 	sha256_pipe130 p1 (
 		.clk(clk),
@@ -87,16 +93,17 @@ assign nonce_next    = nonce + 31'd1;
 
 
 always@(posedge clk)
-begin
     if(reset_n5)
         work <= #1 1'b0;
-    else if(start_mining_d1)
-        work <= #1 1'b1;
-	 else if(nonce_to_num_d1 || got_ticket_d1)
-		  work <= 1'b0;
-    else 
-        work <= #1 work;
-end
+    else  
+		if(start_mining_d1)
+			work <= #1 1'b1;
+		 else
+			if(got_ticket_d1 || nonce_to_num_d1)
+				work <= 1'b0;
+			else
+				work <= work;
+
 
 always@(posedge clk)
 begin
@@ -115,18 +122,23 @@ end
 always@(posedge clk)
 	begin
 			got_ticket_d1 <= (hash2_head== 32'ha41f32e7);
-			got_ticket_d2 <=got_ticket_d1;
+			got_ticket_d2 <= got_ticket_d1;
+			got_ticket_d3 <= got_ticket_d2;
 			nonce_to_num_d1 <= (nonce == 31'h7fffffff);
 			midstate_d1 <= midstate;
 			hash2_head <= hash2;
 			data2_d1 <= data2;
 			start_mining_d1 <= start_mining;
 			miner_busy    <= work;
-			reset_n1	<= rst;
-			reset_n2	<= rst;
-			reset_n3	<= rst;
-			reset_n5	<= rst;
-			reset_n6	<= rst;
+	end
+
+always@(*)
+	begin
+			reset_n1	= rst;
+			reset_n2	= rst;
+			reset_n3	= rst;
+			reset_n5	= rst;
+			reset_n6	= rst;
 	end
 
 always@(posedge clk)
@@ -135,7 +147,7 @@ begin
 		  got_ticket <= #1 1'b0;
 	 else if (start_mining_d1)
 		got_ticket <= #1 1'b0;
-    else if(got_ticket_d2)
+    else if(got_ticket_d3)
       got_ticket <= #1 1'b1;
 	 else
 		got_ticket <= #1 got_ticket;
@@ -150,17 +162,12 @@ begin
 	 else if (work)
 		  golden_nonce_ct <= #1 golden_nonce_ct + 1'b1;
     else
-        golden_nonce_ct <= #1 31'b0;
+        golden_nonce_ct <= #1 golden_nonce_ct;
 end
 //////////////////////////////////////////////
-always@(posedge clk)
+always@(*)
 begin
-    if(reset_n3)
-        golden_nonce <= #1 32'b0;
-    else if(got_ticket_d1)
-        golden_nonce <= #1 {nonce_start,golden_nonce_ct};
-    else
-		  golden_nonce <= #1 golden_nonce;
+	golden_nonce = got_ticket?{nonce_start,golden_nonce_ct}:32'b0;
 end
 
 

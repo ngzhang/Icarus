@@ -1,0 +1,5 @@
+tiny change on the logic and route.
+slightly reduced power consuming. (about 1%)
+before update the flash, it suggest you to use the .bit first to insure it works well on your board.
+if any unstable issue appear, please do not use this bitsteam. and let me know: ngzhang1983@msn.com
+upgrade the mcs file to flash after at least a week test.
