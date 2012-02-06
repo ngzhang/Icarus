@@ -11,6 +11,6 @@ if [ "${TRUE_COUNT}" == "0" ]; then
     killall -s 15 miner.sh
     ps ax | grep "python ./miner.py" | grep -v grep | sed 's/^ *//' | cut -d ' ' -f 1 | xargs kill -15
 
-    ICARUS_MINING_PATH="/home/xiangfu/PanGu/Icarus/Icarus-Mining/miner0/queue"
+    ICARUS_MINING_PATH="../queue_ver"
     (cd ${ICARUS_MINING_PATH} && ./miner.sh &)
 fi
