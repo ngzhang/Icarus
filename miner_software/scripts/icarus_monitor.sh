@@ -1,12 +1,18 @@
-#!/bin/bash
+#!/bin/sh
 
-DATE=`date +%Y%m%d-%H:%M`
+SCRIPT_PATH=`pwd`
 
-MONITOR_MSG=`mktemp`
-/home/xiangfu/PanGu/Icarus/undermanager/undermanager > ${MONITOR_MSG} 2>&1
+${SCRIPT_PATH}/icarus_undermanager.py > ${SCRIPT_PATH}/u.log 2>&1
 
-FALSE_COUNT=`more ${MONITOR_PATH}/${DATE}.xiangfu.log | grep "\"alive\": false" | wc -l`
+TRUE_COUNT=`more ${SCRIPT_PATH}/u.log | grep "\"alive\": true"   | wc -l`
+HASHRATE=`more ${SCRIPT_PATH}/u.log | grep "\"hashrate\": 0,"  | wc -l`
 
-if [ "${FALSE_COUNT}" != "1" ]; then
-    /home/xiangfu/bin/restart_miner.sh      >> ${MONITOR_PATH}/restart.log 2>&1
+if [ "${TRUE_COUNT}" == "0" ] || [ "${HASHRATE}" == "1" ]; then
+    echo `date`  >> ${SCRIPT_PATH}/restart.log
+
+    killall -s 15 miner.sh
+    ps ax | grep "python ./miner.py" | grep -v grep | sed 's/^ *//' | cut -d ' ' -f 1 | xargs kill -15
+
+    ICARUS_MINING_PATH="../queue_ver"
+    (cd ${ICARUS_MINING_PATH} && ./miner.sh &)
 fi

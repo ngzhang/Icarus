@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 LOG_DIR=../log
 mkdir -p ${LOG_DIR}
