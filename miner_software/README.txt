@@ -20,6 +20,6 @@ edit the 'miner.sh' change the 'WORKER' and 'SERIAL'
   SERIAL=/dev/ttyUSB0
 
 notice that simple_ver is better for a low network latency, and queue ver is better for the opposite.
-but there are still some stability issues.
+but there are still some stability issues. the script some times stuck in a system function call, it's hard to be solved.so, the queue add a watch dog timer to restart the script when error occured.
 
 -d and -m is not work properly fot present firmware.

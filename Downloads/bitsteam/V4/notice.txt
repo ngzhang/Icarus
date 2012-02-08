@@ -1,0 +1,2 @@
+190M for test.
+in this bitsteam, the FPGA will continue working until nonce_to, even found a valid nonce.
