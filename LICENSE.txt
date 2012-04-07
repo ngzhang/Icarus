@@ -64,4 +64,4 @@ This section is intended to make thoroughly clear what is believed to be a conse
 
 If the distribution and/or use of the Design is restricted in certain countries either by patents or by copyrighted interfaces, the original copyright holder who places the Design under this License may add an explicit geographical distribution limitation excluding those countries, so that distribution is permitted only in or among countries not thus excluded. In such case, this License incorporates the limitation as if written in the body of this License.
 Each version of the HDPL is given a distinguishing version number. If the Design specifies a version number of this License which applies to it and "any later version", you have the option of following the terms and conditions either of that version or of any later version.
-If you wish to incorporate parts of the Design into other free designs whose distribution conditions are different, you may write to the author to ask for permission.
+If you wish to incorporate parts of the Design into other free designs whose distribution conditions are different, you may write to the author to ask for permission.hello
