@@ -20,7 +20,7 @@ rdata2  = block.decode('hex')[95:63:-1]
 rmid    = midstate.decode('hex')[::-1]
 payload = rmid + rdata2
 
-print("Push payload to icarus: " + binascii.hexlify(payload))
+print("Push payload1 to icarus: " + binascii.hexlify(payload))
 ser.write(payload)
 
 b=ser.read(4)
@@ -28,9 +28,19 @@ print("Result:(should be: 063c5e01): " + binascii.hexlify(b))
 
 # Just another test
 payload2 = "ce92099c5a80bb81c52990d5c0924c625fd25a535640607d5a4bdf8174e2c8d500000000000000000000000080000000000000000b290c1a42313b4f21b5bcb8"
-print("Push payload to icarus: " + payload2)
+print("Push payload2 to icarus: " + payload2)
 ser.write(payload2.decode('hex'))
 
 b=ser.read(4)
 print("Result:(should be: 8e0b31c5): " + binascii.hexlify(b))
+
+
+# Just another test
+# Block 171874 nonce = (0xa2870100) = 0x000187a2
+payload3 = "4679ba4ec99876bf4bfe086082b400254df6c356451471139a3afa71e48f544a000000000000000000000000000000000000000087320b1a1426674f2fa722ce"
+print("Push payload3 to icarus: " + payload3)
+ser.write(payload3.decode('hex'))
+
+b=ser.read(4)
+print("Result:(should be: 000187a3): " + binascii.hexlify(b))
 
