@@ -2,7 +2,7 @@
 2, find and open "iMPACT" tool. press "cancel" if any dialog box popup.
 3, connect the Platform Cable, power Icarus. the indicator light on the cable turn green.
 4, click " Boundary Scan".  click "Initialize Chain". press "cancel" if any dialog box popup.
-5, click "SPI/BPI ?" icon at the top of xc6slx150 device. and assign the MCS file. delect "SPI PROM", "W25Q64BV/CV", "4".
+5, click "SPI/BPI ?" icon at the top of xc6slx150 device. and assign the MCS file. select "SPI PROM", "W25Q64BV/CV", "4".
 6, repeat step 5 for the other FPGA.
 7, right click FLASH icon and select program.
 8, wait for at least 8 min, than it will fail.
