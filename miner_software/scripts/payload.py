@@ -6,7 +6,7 @@ import binascii
 
 
 parser = OptionParser()
-parser.add_option("-s", "--serial", dest="serial_port", default="/dev/ttyUSB1", help="Serial port")
+parser.add_option("-s", "--serial", dest="serial_port", default="/dev/ttyUSB0", help="Serial port")
 (options, args) = parser.parse_args()
 
 ser = Serial(options.serial_port, 115200, 8)
@@ -42,5 +42,5 @@ print("Push payload3 to icarus: " + payload3)
 ser.write(payload3.decode('hex'))
 
 b=ser.read(4)
-print("Result:(should be: 000187a3): " + binascii.hexlify(b))
+print("Result:(should be: 000187a2): " + binascii.hexlify(b))
 
