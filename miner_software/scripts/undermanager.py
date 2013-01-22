@@ -18,7 +18,7 @@ try:
     parser.add_option("-a",
                       "--api-key",
                       dest="api",
-                      default="http://ozco.in/api.php?api_key=799_KqTxHmXAmxbnRBnSCFSVfKWGKWamxaMrBnrberBf",
+                      default="",
                       help="JSON API key")
 
     (options, args) = parser.parse_args()
